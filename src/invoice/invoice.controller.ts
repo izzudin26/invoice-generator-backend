@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Post, HttpCode, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Req, Post, HttpCode, HttpException, HttpStatus, Body } from '@nestjs/common';
 import { CreateInvoiceDTO } from './invoice.dto';
 import { InvoiceService } from './invoice.service';
 
@@ -9,7 +9,7 @@ export class InvoiceController {
 
     @Post()
     @HttpCode(201)
-    async create(@Req() createInvoice: CreateInvoiceDTO) {
+    async create(@Body() createInvoice: CreateInvoiceDTO) {
         try {
             const invoice = await this._invoiceService.create(createInvoice)
             return {
