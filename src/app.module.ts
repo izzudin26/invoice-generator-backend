@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { InvoiceController } from './invoice/invoice.controller';
 import { InvoiceModule } from './invoice/invoice.module';
 
 
@@ -13,7 +12,7 @@ import { InvoiceModule } from './invoice/invoice.module';
     MongooseModule.forRoot(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.4rwe3go.mongodb.net/${process.env.MONGO_DATABASE}`),
     InvoiceModule
   ],
-  controllers: [AppController, InvoiceController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule { }
