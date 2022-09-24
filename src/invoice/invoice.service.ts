@@ -20,8 +20,18 @@ export class InvoiceService {
     }
 
     async collection(): Promise<Invoice[]> {
-        return this._invoice.find().sort({
+        return await this._invoice.find().sort({
             timestamp: -1
         }).exec()
+    }
+
+    async update(newInvoice: CreateInvoiceDTO, id: string): Promise<void> {
+        const _id = new Types.ObjectId(id)
+        await this._invoice.updateOne({_id}, newInvoice).exec()
+    }
+
+    async delete(id: string): Promise<void> {
+        const _id = new Types.ObjectId(id)
+        await this._invoice.deleteOne({_id}).exec()
     }
 }
